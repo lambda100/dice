@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Dice</title>
+    </head>
+
+    <body>
+        <input type="checkbox" id="Number1" value="Number 1" checked>
+        <label for="Number1">Number 1</label><br>
+        <input type="checkbox" id="Number2" value="Number 2" checked>
+        <label for="Number2">Number 2</label><br>
+        <input type="checkbox" id="Number3" value="Number 3" checked>
+        <label for="Number3">Number 3</label><br>
+        <input type="checkbox" id="TiongBahruPlaza" value="Tiong Bahru Plaza" checked>
+        <label for="TiongBahruPlaza">Tiong Bahru Plaza</label><br>
+        <input type="checkbox" id="TiongBahruMarket" value="Tiong Bahru Market" checked>
+        <label for="TiongBahruMarket">Tiong Bahru Market</label><br>
+        <input type="checkbox" id="DeportRoad" value="Deport Road" checked>
+        <label for="DeportRoad">Deport Road</label><br>
+        <input type="checkbox" id="Vivo" value="Vivo" checked>
+        <label for="Vivo">Vivo</label><br>
+        <input type="checkbox" class="empty_checkbox" id="checkbox1">
+        <input type="text" id="text1"><br>
+        <input type="checkbox" class="empty_checkbox" id="checkbox2">
+        <input type="text" id="text2"><br>
+        <input type="checkbox" class="empty_checkbox" id="checkbox3">
+        <input type="text" id="text3"><br>
+
+        <br><br>
+        <button onclick="getSelectedCheckboxes()">Roll dice</button>
+
+        <br><br>
+        <div id="output"></div>
+
+        <script>
+            function getSelectedCheckboxes() {
+                const checkboxes = document.querySelectorAll('.empty_checkbox');
+                const texts = document.querySelectorAll('input[type="text"]');
+                
+                for (let i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked) {
+                    checkboxes[i].value = texts[i].value;
+                    }
+                }
+                
+                const selectedCheckboxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.value);
+                
+                // Select a random item from the preset list
+                const randomItem = selectedCheckboxes[Math.floor(Math.random() * selectedCheckboxes.length)];
+
+                // Display the random item in HTML
+                document.getElementById('output').innerHTML = "Go eat " + randomItem;
+            }
+        </script>
+    </body>
+</html>
